@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Inline&family=Noto+Sans+Thai&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>G9 Simulation</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="inner_sidebar">
+            <div class="opbtn">
+                <button class="preset" id="preset" onclick="Sidebar.preset()">Preset</button>
+                <button class="manual" id="manual" onclick="Sidebar.manual()">Manual</button>
+            </div>
+            <div class="preset_target" id="preset_target">
+                <div class="target_container_1" id="target_container_1">
+                    <div id="border_triangle"></div>
+                    <div class="triangle">
+                        <button class="circlebtn" id="preset_1" onclick="Sidebar.preset_1()">1</button>
+                        <button class="circlebtn" id="preset_2" onclick="Sidebar.preset_2()">2</button>
+                        <button class="circlebtn" id="preset_3" onclick="Sidebar.preset_3()">3</button>
+                    </div>
+                </div>
+                <div class="target_container_2" id="target_container_2">
+                    <div id="border_triangle"></div>
+                    <div class="triangle">
+                        <button class="circlebtn" id="preset_4" onclick="Sidebar.preset_4()">1</button>
+                        <button class="circlebtn" id="preset_5" onclick="Sidebar.preset_5()">2</button>
+                        <button class="circlebtn" id="preset_6" onclick="Sidebar.preset_6()">3</button>
+                    </div>
+                </div>
+                <div class="target_container_3" id="target_container_3">
+                    <div id="border_triangle"></div>
+                    <div class="triangle">
+                        <button class="circlebtn" id="preset_7" onclick="Sidebar.preset_7()">4</button>
+                        <button class="circlebtn" id="preset_8" onclick="Sidebar.preset_8()">5</button>
+                        <button class="circlebtn" id="preset_9" onclick="Sidebar.preset_9()">6</button>
+                    </div>
+                </div>
+                <div class="target_container_4" id="target_container_4">
+                    <div id="border_triangle"></div>
+                    <div class="triangle">
+                        <button class="circlebtn" id="preset_10" onclick="Sidebar.preset_10()">7</button>
+                        <button class="circlebtn" id="preset_11" onclick="Sidebar.preset_11()">8</button>
+                        <button class="circlebtn" id="preset_12" onclick="Sidebar.preset_12()">9</button>
+                    </div>
+                </div>
+
+                <div class="target_container_5" id="target_container_5">
+                    <div id="border_triangle"></div>
+                    <div class="triangle">
+                        <button class="circlebtn" id="preset_13" onclick="Sidebar.preset_13()">10</button>
+                        <button class="circlebtn" id="preset_14" onclick="Sidebar.preset_14()">11</button>
+                        <button class="circlebtn" id="preset_15" onclick="Sidebar.preset_15()">12</button>
+                    </div>
+                </div>
+                <div class="target_container_6" id="target_container_6">
+                    <div id="border_triangle"></div>
+                    <div class="triangle">
+                        <button class="circlebtn" id="preset_16" onclick="Sidebar.preset_16()">13</button>
+                        <button class="circlebtn" id="preset_17" onclick="Sidebar.preset_17()">14</button>
+                        <button class="circlebtn" id="preset_18" onclick="Sidebar.preset_18()">15</button>
+                    </div>
+                </div>
+                <div class="target_container_7" id="target_container_7">
+                    <div id="border_triangle"></div>
+                    <div class="triangle">
+                        <button class="circlebtn" id="preset_19" onclick="Sidebar.preset_19()">16</button>
+                        <button class="circlebtn" id="preset_20" onclick="Sidebar.preset_20()">17</button>
+                        <button class="circlebtn" id="preset_21" onclick="Sidebar.preset_21()">18</button>
+                    </div>
+                </div>
+                <div class="opt">
+                    <button class="rotate" onclick="Sidebar.spin()">spin</button>
+                    <button class="swap" onclick="Sidebar.swap()">swap target</button>
+                    <button class="clear" onclick="Sidebar.clear()">Clear</button>
+                </div>
+            </div>
+            <div class="manual_target" id="manual_target">
+                <div class="prefix">Distance From target
+                    <input class="input_value" id="X_offset" placeholder="Meter" type="number">
+                </div>
+                <div class="prefix">Height from ground
+                    <input class="input_value" id="Y_offset" placeholder="Meter" type="number">
+                </div>
+                <div class="prefix">X Distance target
+                    <input class="input_value" id="X_target" placeholder="Meter" type="number">
+                </div>
+                <div class="prefix">Y Distance target
+                    <input class="input_value" id="Y_target" placeholder="Meter" type="number">
+                </div>
+            </div>
+            <button class="calculate"
+                onclick="Cal_C.Get_data(); Cal_C.Y_displace_Cal();"><span>Calculate</span></button>
+        </div>
+    </div>
+    <div class="bottom_bar">
+        <div class="status">
+            <h1>Status</h1>
+        </div>
+        <div class="status_bar_before_go" id="status_bar_before_go">
+            <div class="position">
+                <div class="slideX">
+                    <h1>Slide from Left to Right</h1>
+                    <a id="slideX">####</a>
+                </div>
+                <div class="slideY">
+                    <h1>Slide from Front to Back</h1>
+                    <a id="slideY">####</a>
+                </div>
+            </div>
+            <div class="Angle">
+                <h1>Angle</h1>
+                <a id="Angle">####</a>
+            </div>
+        </div>
+        <div class="status_bar_after_go" id="status_bar_after_go">
+            <div class="displacement_x">
+                <h1>Displacement X Axis : </h1>
+                <p1 id="displacement_x">####</p1>
+            </div>
+            <div class="displacement_y">
+                <h1>Displacement Y Axis : </h1>
+                <p1 id="displacement_y">####</p1>
+            </div>
+            <div class="velocity_x">
+                <h1>Velocity X Axis : </h1>
+                <p1 id="velocity_x">####</p1>
+            </div>
+            <div class="velocity_y">
+                <h1>Velocity Y Axis : </h1>
+                <p1 id="velocity_y">####</p1>
+            </div>
+            <div class="time">
+                <h1>Time</h1>
+                <p1 id="time">####</p1>
+            </div>
+        </div>
+        <div class="launch_btn">
+            <button class="bigcirclebtn_go" id="bigcirclebtn_go" onclick="Cal_C.Animate(); Bottombar.go();">
+                <strong>GO!</strong>
+            </button>
+            <div class="speedbtn" id="speedbtn">
+                <button class="recbtns" id="recbtns" onclick="Bottombar.slowbtn()"><span>x0.5</span></button>
+                <button class="recbtnx" id="recbtnx" onclick="Bottombar.normbtn()"><span>x1.0</span></button>
+                <button class="recbtnl" id="recbtnl" onclick="Bottombar.fastbtn()"><span>x1.5</span></button>
+            </div>
+        </div>
+        <div class="launch_btn">
+            <button class="bigcirclebtn_reset" id="bigcirclebtn_reset" onclick="Bottombar.reset()">
+                <strong>RESET</strong>
+            </button>
+        </div>
+    </div>
+
+    <div class="display">
+        <div class="vbtn">
+            <button class="tview" id="tview" onclick="Display.top()"> T </button>
+            <button class="targetview" id="targetview" onclick="Display.target()"><img id="aim" src="aim.png"></button>
+            <button class="sview" id="sview" onclick="Display.side()"> S </button>
+        </div>
+        <input type="checkbox" id="path">
+        <a id="cpath">Show path</a>
+        <div class="settingbtn">
+            <button class="set" onclick="Display.setting()"><img id="st" src="options.png"></button>
+            <button class="leave" onclick="Display.leave()"><img id="lg" src="logout.png"></button>
+        </div>
+        <canvas class="side" id="canvas"></canvas>
+        <div id="lc">
+            <img id="lct" src="LCT.png">
+            <img id="lcb" src="LCB.png">
+            <div id="wall"></div>
+            <div id="table"></div>
+            <div id="ttt"></div>
+        </div>
+
+        <div class="top" id="top">
+            <div id="origintop">&#8689;</div>
+            <div id="field"></div>
+            <img id="G9top" src="G9top.png">
+        </div>
+
+        <div class="target" id="target">
+            <div id="squash"></div>
+            <div id="origin">&#8690;</div>
+            <div class="btriangle">
+                <div id="set_1">
+                    <div class="circle_target" id="c1"></div>
+                    <div class="circle_target" id="c2"></div>
+                    <div class="circle_target" id="c3"></div>
+                </div>
+                <div id="set_2">
+                    <div class="circle_target" id="c4"></div>
+                    <div class="circle_target" id="c5"></div>
+                    <div class="circle_target" id="c6"></div>
+                </div>
+                <div id="set_3">
+                    <div class="circle_target" id="c7"></div>
+                    <div class="circle_target" id="c8"></div>
+                    <div class="circle_target" id="c9"></div>
+                </div>
+                <div id="set_4">
+                    <div class="circle_target" id="c10"></div>
+                    <div class="circle_target" id="c11"></div>
+                    <div class="circle_target" id="c12"></div>
+                </div>
+                <div id="set_5">
+                    <div class="circle_target" id="c13"></div>
+                    <div class="circle_target" id="c14"></div>
+                    <div class="circle_target" id="c15"></div>
+                </div>
+                <div id="set_6">
+                    <div class="circle_target" id="c16"></div>
+                    <div class="circle_target" id="c17"></div>
+                    <div class="circle_target" id="c18"></div>
+                </div>
+                <div id="set_7">
+                    <div class="circle_target" id="c19"></div>
+                    <div class="circle_target" id="c20"></div>
+                    <div class="circle_target" id="c21"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="floor"></div>
+    <div class="setting" id="setting">
+        <div class="sign">
+            <h1>Setting</h1>
+        </div>
+        <div class="info">
+            <div class="info_box">
+                <div class="inputbox">
+                    <div class="label">
+                        <a>Barrel Length</a>
+                    </div>
+                    <input class="valuebox" id="barrel_lenghth" type="number" placeholder="Meter">
+                </div>
+                <div class="inputbox">
+                    <div class="label">
+                        <a>Barrel Height</a>
+                    </div>
+                    <input class="valuebox" id="barrel_height" placeholder="Meter">
+                </div>
+                <div class="inputbox">
+                    <div class="label">
+                        <a>Pusher Mass</a>
+                    </div>
+                    <input class="valuebox" id="pusher_mass" placeholder="Kilogram">
+                </div>
+                <div class="inputbox">
+                    <div class="label">
+                        <a>Spring Constant</a>
+                    </div>
+                    <input class="valuebox" id="spring_constant" placeholder="N/m">
+                </div>
+                <div class="inputbox">
+                    <div class="label">
+                        <a>Spring recoil Distance</a>
+                    </div>
+                    <input class="valuebox" id="spring_recoil_distance" placeholder="Meter">
+                </div>
+            </div>
+            <div class="settingbtninfo">
+                <button class="cancel" id="cancel" onclick="Display.cancel()">Cancel</button>
+                <button class="setup" onclick="Input.Setup(); Display.set()">Setup</button>
+            </div>
+        </div>
+    </div>
+    <script defer src="app.js"></script>
+</body>
+
+</html>
